@@ -1,0 +1,31 @@
+[Unit]
+Description=InfiniteHelloWorlds
+
+# Wait for network to be up
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="REDIS_URL=127.0.0.1:6379,password=1234"
+Environment="SOME_OTHER_KEY="value"
+
+# systemd will run this executable to start the service
+ExecStart=/home/user/production/infinitehelloworlds/InfiniteHelloWorlds
+# to query logs using journalctl, set a logical name here
+SyslogIdentifier=InfiniteHelloWorlds
+
+# Working Directory for Log Files
+WorkingDirectory=/home/user/production/infinitehelloworlds/
+
+# Use your username to keep things simple.
+# To update permissions, use 'chown yourusername -R /srv/HelloWorld' to take ownership of the folder and files,
+#       Use 'chmod +x /srv/HelloWorld/HelloWorld' to allow execution of the executable file
+User=user
+
+# ensure the service restarts after crashing
+Restart=always
+# amount of time to wait before restarting the service
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
