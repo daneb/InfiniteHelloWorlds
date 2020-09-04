@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/InfiniteHelloWorlds/Deploys/infinitehelloworlds.service" />
         <option value="$PROJECT_DIR$/InfiniteHelloWorlds/Deploys/hosts.yml" />
         <option value="$PROJECT_DIR$/InfiniteHelloWorlds/Deploys/infinitehelloworlds.yml" />
+        <option value="$PROJECT_DIR$/InfiniteHelloWorlds/infinitehelloworlds.yml" />
       </list>
     </option>
   </component>
@@ -59,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599223538701</updated>
-      <workItem from="1599223555025" duration="5264000" />
+      <workItem from="1599223555025" duration="6020000" />
     </task>
     <servers />
   </component>

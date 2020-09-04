@@ -10,11 +10,11 @@
   tasks:
     - name: Compress directory before send
       local_action: command zip -9jpr "{{ playbook_dir }}/Deploys/{{ target_project }}.zip" "{{ playbook_dir }}/{{ linux_release_path }}"
-#    - name: stop service infinitehelloworlds, if running
-#      systemd:
-#        name: infinitehelloworlds
-#        state: stopped
-#      become: true
+    - name: stop service infinitehelloworlds, if running
+      systemd:
+        name: infinitehelloworlds
+        state: stopped
+      become: true
     - name: Copy release files to host
       copy:
         src: "{{ playbook_dir }}/Deploys/{{ target_project }}.zip"

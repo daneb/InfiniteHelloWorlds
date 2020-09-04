@@ -10,7 +10,7 @@
         <e p="Deploys" t="Include">
           <e p="hosts.yml" t="Include" />
           <e p="infinitehelloworlds.service" t="Include" />
-          <e p="zif3AUpf" t="Include" />
+          <e p="infinitehelloworlds.zip" t="Include" />
         </e>
         <e p="InfiniteHelloWorlds.csproj" t="IncludeRecursive" />
         <e p="infinitehelloworlds.yml" t="Include" />
