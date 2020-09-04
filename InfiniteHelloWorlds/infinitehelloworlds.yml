@@ -1,0 +1,42 @@
+---
+- name: InfiniteHelloWorlds
+  hosts: dotnetservers
+  vars:
+    production_folder: /home/user/production/
+    target_project: infinitehelloworlds
+    linux_release_path: bin/Release/netcoreapp3.1/linux-x64/publish
+    systemd: /etc/systemd/system/
+    service_file: infinitehelloworlds.service
+  tasks:
+    - name: Compress directory before send
+      local_action: command zip -9jpr "{{ playbook_dir }}/Deploys/{{ target_project }}.zip" "{{ playbook_dir }}/{{ linux_release_path }}"
+#    - name: stop service infinitehelloworlds, if running
+#      systemd:
+#        name: infinitehelloworlds
+#        state: stopped
+#      become: true
+    - name: Copy release files to host
+      copy:
+        src: "{{ playbook_dir }}/Deploys/{{ target_project }}.zip"
+        dest: "{{ production_folder }}"
+        owner: user
+        group: user
+        mode: '0644'
+    - name: Unarchive the code
+      unarchive:
+        src: "{{ playbook_dir }}/Deploys/{{ target_project }}.zip"
+        dest: "{{ production_folder }}/{{ target_project }}/"
+    - name: Copy systemd file to manage the service
+      copy:
+        src: "{{ playbook_dir }}/Deploys/{{ service_file }}"
+        dest: "{{ systemd }}"
+        owner: root
+        group: root
+        mode: '0644'
+      become: true
+    - name: restart service
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: infinitehelloworlds
+      become: true
