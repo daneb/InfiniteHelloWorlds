@@ -7,7 +7,7 @@ Wants=network-online.target
 
 [Service]
 Environment="REDIS_URL=127.0.0.1:6379,password=1234"
-Environment="SOME_OTHER_KEY="value"
+Environment="SOME_OTHER_KEY=value"
 
 # systemd will run this executable to start the service
 ExecStart=/home/user/production/infinitehelloworlds/InfiniteHelloWorlds
